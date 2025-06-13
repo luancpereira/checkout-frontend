@@ -1,6 +1,34 @@
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import './Login.css';
+import {
+  Container,
+  Paper,
+  TextField,
+  Button,
+  Typography,
+  Alert,
+  Box,
+  CircularProgress
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const LoginContainer = styled(Container)(({ theme }) => ({
+  minHeight: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: theme.palette.background.default,
+}));
+
+const LoginPaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  width: '100%',
+  maxWidth: 400,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+}));
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -30,47 +58,64 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form-wrapper">
-        <h1>Login</h1>
+    <LoginContainer maxWidth={false}>
+      <LoginPaper elevation={3}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Login
+        </Typography>
         
-        {error && <div className="error-message">{error}</div>}
+        {error && (
+          <Alert severity="error" sx={{ width: '100%' }}>
+            {error}
+          </Alert>
+        )}
         
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="Seu email"
-            />
-          </div>
+        <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
+          <TextField
+            fullWidth
+            id="email"
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="Seu email"
+            margin="normal"
+            autoComplete="email"
+          />
           
-          <div className="form-group">
-            <label htmlFor="password">Senha</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Sua senha"
-            />
-          </div>
+          <TextField
+            fullWidth
+            id="password"
+            label="Senha"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Sua senha"
+            margin="normal"
+            autoComplete="current-password"
+          />
           
-          <button 
-            type="submit" 
-            className="login-button" 
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
             disabled={loading}
+            sx={{ mt: 3, mb: 2, height: 48 }}
           >
-            {loading ? 'Carregando...' : 'Entrar'}
-          </button>
-        </form>
-      </div>
-    </div>
+            {loading ? (
+              <>
+                <CircularProgress size={20} sx={{ mr: 1 }} />
+                Carregando...
+              </>
+            ) : (
+              'Entrar'
+            )}
+          </Button>
+        </Box>
+      </LoginPaper>
+    </LoginContainer>
   );
 };
 
