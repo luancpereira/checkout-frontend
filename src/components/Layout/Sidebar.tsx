@@ -17,7 +17,8 @@ import {
   AssignmentOutlined,
   PeopleOutlined,
   LogoutOutlined,
-  CloseOutlined
+  CloseOutlined,
+  AssessmentOutlined
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -38,14 +39,19 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       path: '/'
     },
     {
-      title: 'Produtos',
-      icon: <Inventory2Outlined />,
-      path: '/products'
+      title: 'Relatórios',
+      icon: <AssessmentOutlined />,
+      path: '/os'
     },
     {
       title: 'Ordem de Serviço',
       icon: <AssignmentOutlined />,
       path: '/os'
+    },
+    {
+      title: 'Produtos',
+      icon: <Inventory2Outlined />,
+      path: '/products'
     },
     {
       title: 'Clientes',

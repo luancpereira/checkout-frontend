@@ -11,7 +11,8 @@ import {
   Inventory2Outlined,
   AssignmentOutlined,
   PeopleOutlined,
-  CloudUploadOutlined
+  CloudUploadOutlined,
+  AssessmentOutlined
 } from '@mui/icons-material';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -26,14 +27,19 @@ const Home = () => {
 
   const menuItems = [
     {
-      title: 'Produtos',
-      icon: <Inventory2Outlined sx={{ fontSize: 60 }} />,
-      path: '/products'
+      title: 'Relatórios',
+      icon: <AssessmentOutlined sx={{ fontSize: 60 }} />,
+      path: '/os'
     },
     {
       title: 'Ordem de Serviço',
       icon: <AssignmentOutlined sx={{ fontSize: 60 }} />,
       path: '/os'
+    },
+    {
+      title: 'Produtos',
+      icon: <Inventory2Outlined sx={{ fontSize: 60 }} />,
+      path: '/products'
     },
     {
       title: 'Clientes',
